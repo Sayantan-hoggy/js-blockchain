@@ -1,21 +1,21 @@
 import { SHA256 } from "crypto-js";
 
-interface BlockTypes<T extends unknown> {
+export interface BlockTypes<T extends string> {
   index?: number | undefined;
   timeStamp?: number | undefined;
   data: T;
   prevHash: string;
 }
 
-export class Block<T extends unknown> {
+export class Block<T extends string> {
   index?: number | undefined;
   timeStamp?: number | undefined;
   data: T;
   prevHash: string;
-  private hash: string;
-  constructor({ index, timeStamp, data, prevHash = "" }: BlockTypes<T>) {
+  hash: string;
+  constructor({ index = 1, timeStamp, data, prevHash = "" }: BlockTypes<T>) {
     this.index = index;
-    this.timeStamp = timeStamp;
+    this.timeStamp = timeStamp || Date.now();
     this.prevHash = prevHash;
     this.data = data;
     this.hash = this.calcHashValue();

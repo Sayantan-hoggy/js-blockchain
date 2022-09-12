@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "dev": "tsc -w",
+    "start": "node build/main.js",
+    "build": "tsc"
+  },
   "dependencies": {
     "crypto-js": "^4.1.1"
   },
